@@ -21,6 +21,15 @@
 ################################################################################
 # This script only gets called by CMake
 
+import google3
+import sys
+
+# Add tensile to the module search path.
+# googl3 magic only works with packages under third_party/py
+runfiles = [path for path in sys.path if path.endswith(".runfiles")]
+if runfiles:
+  sys.path.append(runfiles[0]+"/google3/third_party/amdgpu/tensile")
+
 try:
     from Tensile.TensileCreateLibrary import TensileCreateLibrary
 except ImportError:
